@@ -73,7 +73,7 @@
      positioned surfaces resolve identically even when the scroll area loses
      width to a non-overlay scrollbar. */
   --transcript-measure: clamp(760px, 85cqi, 1240px);
-  font-family: Vazirmatn, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+  font-family: Vazirmatn, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
   font-size: 13px;
   font-synthesis: none;
 }
@@ -141,6 +141,12 @@
    target to bring it back. `clip` is not scrollable, so that state is unreachable. */
 html, body, #root { width: 100%; height: 100%; margin: 0; overflow: clip; }
 body { color: var(--text); background: var(--canvas); font-size: 13px; line-height: 1.45; -webkit-font-smoothing: antialiased; }
+
+/* Chinese glyphs need more leading than Latin at this size, and the 10.5px kbd
+   shorthand is too tight for full-width labels. Scoped to zh-CN so English and
+   Japanese layouts keep their existing metrics. */
+:lang(zh-CN) body { line-height: 1.6; }
+:lang(zh-CN) kbd { font-size: 11px; }
 button, input, textarea, select { color: inherit; font: inherit; }
 /* Chromium's Linux native select popup does not reliably inherit the page's
    scheme or transparent control background. Keep every native menu surface
