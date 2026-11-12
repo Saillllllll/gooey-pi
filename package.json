@@ -88,6 +88,7 @@
   "build": {
     "appId": "app.gooeypi.desktop",
     "productName": "GooeyPi",
+    "npmRebuild": false,
     "asar": {
       "smartUnpack": false
     },
@@ -210,7 +211,7 @@
     },
     "publish": {
       "provider": "github",
-      "owner": "am-will",
+      "owner": "Saillllllll",
       "repo": "gooey-pi"
     },
     "afterPack": "scripts/release/after-pack.cjs",
