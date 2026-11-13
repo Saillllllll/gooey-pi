@@ -20,6 +20,10 @@ function placeholders(message: Message): string[] {
   return [...found].sort()
 }
 
+function placeholdersByForm(message: Message): string[][] {
+  return typeof message === 'string' ? [placeholders(message)] : [placeholders(message.one), placeholders(message.other)]
+}
+
 function isPlural(message: Message): boolean {
   return typeof message !== 'string'
 }
@@ -44,6 +48,13 @@ describe('i18n', () => {
       for (const key of Object.keys(englishCatalog) as MessageKey[]) {
         expect(placeholders(catalog[key]), `${locale} placeholder mismatch for ${key}`).toEqual(placeholders(englishCatalog[key]))
       }
+    }
+  })
+
+  it('keeps placeholders identical in every plural form', () => {
+    for (const key of Object.keys(englishCatalog) as MessageKey[]) {
+      if (!isPlural(englishCatalog[key]) || !isPlural(simplifiedChineseCatalog[key])) continue
+      expect(placeholdersByForm(simplifiedChineseCatalog[key]), `zh-CN plural placeholder mismatch for ${key}`).toEqual(placeholdersByForm(englishCatalog[key]))
     }
   })
 

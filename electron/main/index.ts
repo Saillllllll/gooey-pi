@@ -181,6 +181,9 @@ async function bootstrap(): Promise<void> {
   configureGooeyPiAgentMessageSigning(loadOrCreateGooeyPiAgentMessageKey(join(userDataPath, 'agent-message-signing.key')))
   const stateStore = await openDesktopStateStore(userDataPath)
   store = stateStore
+  // Resolve the native locale before the first dialog or menu can be built:
+  // state-store migration/compatibility failures surface from here on.
+  setMainLocale(stateStore.getSettings().locale, app.getPreferredSystemLanguages())
   backgroundMode = new MacBackgroundController({
     iconPath: appIconPath(),
     getSettings: () => stateStore.getSettings(),
@@ -335,7 +338,6 @@ async function bootstrap(): Promise<void> {
       return backgroundMode?.applySettings(previous, next)
     },
   )
-  setMainLocale(settings.get().locale, app.getPreferredSystemLanguages())
   const cuaDriver = new CuaDriverService()
   // The disabled-by-default integration probes PATH and may spawn a version
   // command. Defer that work until it is enabled or its settings UI is opened.

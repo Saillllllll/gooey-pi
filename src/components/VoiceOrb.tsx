@@ -2,7 +2,7 @@ import { Mic, MicOff, X } from 'lucide-react'
 import { useEffect, useRef, useState, type CSSProperties, type PointerEvent as ReactPointerEvent } from 'react'
 import type { HarnessId, PrimeWorkApi, VoiceTaskStarted, VoiceToolRequest } from '@/types/api'
 import { HARNESS_SHORT_NAMES } from '@/lib/harness'
-import { useI18n } from '@/lib/i18n'
+import { formattingLocaleTag, translate, useI18n } from '@/lib/i18n'
 import { DesktopPet, type DesktopPetProps } from './DesktopPet'
 import type { PetActivity } from './PetAvatar'
 
@@ -50,14 +50,20 @@ function boundedErrorField(value: unknown): string {
 }
 
 function realtimeErrorMessage(message: Record<string, unknown>): string {
-  if (!message.error || typeof message.error !== 'object' || Array.isArray(message.error)) return 'The realtime voice session reported an error.'
+  const t = (key: Parameters<typeof translate>[1], values?: Parameters<typeof translate>[2]) => translate(formattingLocaleTag(), key, values)
+  if (!message.error || typeof message.error !== 'object' || Array.isArray(message.error)) return t('voice.error.session')
   const error = message.error as Record<string, unknown>
   const detail = boundedErrorField(error.message)
   const code = boundedErrorField(error.code)
   const param = boundedErrorField(error.param)
   const eventId = boundedErrorField(error.event_id)
-  if (!detail) return 'The realtime voice session reported an error.'
-  return `Realtime error${code ? ` (${code})` : ''}: ${detail}${param ? ` [${param}]` : ''}${eventId ? ` [event ${eventId}]` : ''}`
+  if (!detail) return t('voice.error.session')
+  return t('voice.error.realtime', {
+    code: code ? t('voice.error.code', { code }) : '',
+    detail,
+    param: param ? t('voice.error.param', { param }) : '',
+    event: eventId ? t('voice.error.event', { eventId }) : '',
+  })
 }
 
 export function VoiceOrb({ voice, harness, onClose, onTaskStarted, pet, focusPetControl = false, onPetControlFocused }: VoiceOrbProps) {

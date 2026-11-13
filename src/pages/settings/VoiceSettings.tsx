@@ -41,7 +41,7 @@ function needsDesktopRestart(error: unknown): boolean {
 
 function ModelSelect({ label, description, value, options, onChange, t }: { label: string; description: string; value: string; options: VoiceOption[]; onChange(value: string): void; t: (key: MessageKey, values?: Record<string, string | number>) => string }) {
   const choices = optionsWithCurrent(options, value)
-  const optionLabel = (option: VoiceOption) => option.labelKey ? t(option.labelKey) : option.label
+  const optionLabel = (option: VoiceOption) => option.labelKey ? t(option.labelKey, { value: option.value }) : option.label
   const optionDetail = (option: VoiceOption) => option.detailKey ? t(option.detailKey, { value: option.value }) : option.detail
   return (
     <label className="voice-choice-row">
