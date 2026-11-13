@@ -69,7 +69,7 @@ export function createManualUpdateCheck(
     inFlight = true
     void check()
       .then((state) => notify(manualUpdateNotification(state)))
-      .catch((error) => notify({ type: 'error', message: 'GooeyPi Update Check Failed', detail: errorMessage(error) }))
+      .catch((error) => notify({ type: 'error', message: mt('update.checkFailedTitle'), detail: errorMessage(error) }))
       .finally(() => { inFlight = false })
       .catch((error: unknown) => console.error(`GooeyPi update notification failed: ${errorMessage(error)}`))
   }

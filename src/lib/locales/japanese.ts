@@ -1377,6 +1377,12 @@ export const japaneseCatalog: Record<MessageKey, Message> = {
 
   'menu.checkForUpdates': 'アップデートを確認…',
   'menu.quit': '{appName} を終了',
+  'tray.open': 'GooeyPi を開く',
+  'tray.settings': '設定…',
+  'tray.quit': '終了',
+  'settings.general.launchAtLogin.approval': 'ログイン時に GooeyPi を開くには macOS の承認が必要です。「システム設定 > 一般 > ログイン項目」で GooeyPi を許可してから、もう一度お試しください。',
+  'settings.general.launchAtLogin.failedAdd': 'macOS が GooeyPi のログイン項目を追加できませんでした。',
+  'settings.general.launchAtLogin.failedRemove': 'macOS が GooeyPi のログイン項目を削除できませんでした。',
   'dialog.closeApp': 'GooeyPi を閉じる',
   'dialog.reloadWindow': 'ウィンドウを再読み込み',
   'dialog.ok': 'OK',

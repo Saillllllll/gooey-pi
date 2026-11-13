@@ -1381,6 +1381,12 @@ export const simplifiedChineseCatalog: Record<MessageKey, Message> = {
   // Native shell copy rendered by the Electron main process.
   'menu.checkForUpdates': '检查更新…',
   'menu.quit': '退出 {appName}',
+  'tray.open': '打开 GooeyPi',
+  'tray.settings': '设置…',
+  'tray.quit': '退出',
+  'settings.general.launchAtLogin.approval': 'macOS 需要你批准才能在登录时打开 GooeyPi。请在“系统设置 > 通用 > 登录项”中允许 GooeyPi，然后重试。',
+  'settings.general.launchAtLogin.failedAdd': 'macOS 未能添加 GooeyPi 的登录项。',
+  'settings.general.launchAtLogin.failedRemove': 'macOS 未能移除 GooeyPi 的登录项。',
   'dialog.closeApp': '关闭 GooeyPi',
   'dialog.reloadWindow': '重新加载窗口',
   'dialog.ok': '确定',

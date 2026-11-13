@@ -1406,6 +1406,12 @@ export const englishCatalog = {
   // update notifications). Kept in the shared catalogs so every locale agrees.
   'menu.checkForUpdates': 'Check for Updates…',
   'menu.quit': 'Quit {appName}',
+  'tray.open': 'Open GooeyPi',
+  'tray.settings': 'Settings…',
+  'tray.quit': 'Quit',
+  'settings.general.launchAtLogin.approval': 'macOS needs your approval to open GooeyPi at login. Allow GooeyPi in System Settings > General > Login Items, then try again.',
+  'settings.general.launchAtLogin.failedAdd': "macOS did not add GooeyPi's login item.",
+  'settings.general.launchAtLogin.failedRemove': "macOS did not remove GooeyPi's login item.",
   'dialog.closeApp': 'Close GooeyPi',
   'dialog.reloadWindow': 'Reload window',
   'dialog.ok': 'OK',
