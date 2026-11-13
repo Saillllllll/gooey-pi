@@ -141,14 +141,14 @@ export function VoiceOrb({ voice, harness, onClose, onTaskStarted, pet, focusPet
             if (active) setTaskOpened(true)
           }).catch((failure) => {
             if (!active) return
-            setError(t('voice.error.openTask', { detail: failure instanceof Error ? failure.message : t('voice.error.unknown') }))
+            setError(translate(formattingLocaleTag(), 'voice.error.openTask', { detail: failure instanceof Error ? failure.message : translate(formattingLocaleTag(), 'voice.error.unknown') }))
           })
         }
       } catch (failure) {
-        const message = failure instanceof Error ? failure.message : t('voice.error.toolFailed')
+        const message = failure instanceof Error ? failure.message : translate(formattingLocaleTag(), 'voice.error.toolFailed')
         if (active && request.name === 'start_task') {
           setTaskReceipt(null)
-          setError(t('voice.error.taskNotStarted', { detail: message }))
+          setError(translate(formattingLocaleTag(), 'voice.error.taskNotStarted', { detail: message }))
         }
         sendToolOutput(callId, JSON.stringify({ error: message }))
       }
@@ -200,7 +200,7 @@ export function VoiceOrb({ voice, harness, onClose, onTaskStarted, pet, focusPet
             continuationPending = false
           }
         }
-        setError((current) => current.startsWith(t('voice.error.taskNotStarted', { detail: '' })) ? current : detail)
+        setError((current) => current.startsWith(translate(formattingLocaleTag(), 'voice.error.taskNotStarted', { detail: '' })) ? current : detail)
         setOrbState('error')
       }
     })
@@ -221,7 +221,7 @@ export function VoiceOrb({ voice, harness, onClose, onTaskStarted, pet, focusPet
         await peer.setRemoteDescription({ type: 'answer', sdp: answer })
       } catch (failure) {
         if (!active) return
-        setError(failure instanceof Error ? failure.message : t('voice.error.start'))
+        setError(failure instanceof Error ? failure.message : translate(formattingLocaleTag(), 'voice.error.start'))
         setOrbState('error')
       }
     })()
